@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Name:-$name',
+              'Name:-${context.watch<Dog>().name}',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -87,7 +87,7 @@ class _BreedAndAgeState extends State<BreedAndAge> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Breed:-$breed',
+          'Breed:-${context.select<Dog, String>((Dog dog) => dog.breed)}',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -118,7 +118,7 @@ class _AgeState extends State<Age> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Age:-$age',
+          'Age:-${context.select<Dog, int>((Dog dog) => dog.age)}',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -129,7 +129,7 @@ class _AgeState extends State<Age> {
         ),
         ElevatedButton(
             onPressed: () {
-              Provider.of<Dog>(context, listen: false).grow();
+              context.read<Dog>().grow();
             },
             child: const Text(
               'Grow',
